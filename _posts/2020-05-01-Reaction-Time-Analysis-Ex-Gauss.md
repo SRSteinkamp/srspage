@@ -1,12 +1,11 @@
 ---
+layout: post
 title: "Reaction Time Analysis: The exponential Gaussian"
 author: Simon R. Steinkamp
 date: 2020-04-30
-
-categories:
-    - Reaction Times
-    - Modeling
-    - R
+description: Reaction time analysis, using an Exgaus.
+toc: true
+categories: [Reaction Times, Modeling, R]
 ---
 
 ## The (not so) easy task of analysing reaction times.

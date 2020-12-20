@@ -1,11 +1,10 @@
 ---
+layout: post
 title: "30th place solution in Kaggle"
 author: Simon R. Steinkamp
 date: 2020-07-03
 
-categories:
-    - Python
-    - Kaggle
+categories: [Python, Kaggle]
 ---
 # 30th place solution in Kaggle
 

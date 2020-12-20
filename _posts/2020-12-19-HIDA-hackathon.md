@@ -1,10 +1,9 @@
 ---
+layout: post
 title: "HIDA-Datathon"
 author: Simon R. Steinkamp
 date: 2020-12-19
-
-categories:
-    - HIDA
+categories: [HIDA]
 ---
 
 # HIDA Datathon on Climate Change

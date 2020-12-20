@@ -1,10 +1,9 @@
 ---
+layout: post
 title: "HIDA-Datathon in April"
 author: Simon R. Steinkamp
 date: 2020-04-30
-categorie:
-  - Python
-  - HIDA
+categories: [Python, HIDA]
 ---
 
 # 02-03 April 2020 HIDA-datathon
