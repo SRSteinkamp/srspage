@@ -8,7 +8,7 @@ categories: [Python, HIDA]
 
 # 02-03 April 2020 HIDA-datathon
 
-![](../images/hida_volcanic.png)
+![]({{ site.baseurl }}/images/hida_volcanic.png)
 
 This remote/online 36h datathon was organized by the [Helmholtz Information & Data Science Academy](https://www.helmholtz-hida.de/), inplace of the big datathon: [Grand Challenges on Climate Change](https://www.helmholtz-hida.de/angebote/veranstaltungen/detail/artikeldetail/hida-datathon/), which couldn't take place due to the coronavirus.
 

@@ -77,7 +77,7 @@ same mean of 600 (the black dashed line). To the left the two components
 of the Ex-Gaussian are presented - the Gaussian and the Exponential
 distributions. Here again the dashed-lines describe the mean of the
 corresponding distributions.
-![](/images/unnamed-chunk-2-1.png)
+![]({{ site.baseurl }}/images/unnamed-chunk-2-1.png)
 
 The [**Ex**(ponential) **Gauss**(ian)
 distribution](https://en.wikipedia.org/wiki/Exponentially_modified_Gaussian_distribution),
@@ -169,7 +169,7 @@ I couldn’t figure out how to put meaningful legends on the interactive
 version: \* red estimates for *μ*, solid bars distribution *μ* \* blue
 estimates for *τ*, dotted bars distribution *τ* \* green estimates for
 *σ*, dashed bars distribution *σ*
-![](/images/unnamed-chunk-6-1.png)
+![]({{ site.baseurl }}/images/unnamed-chunk-6-1.png)
 To get an estimate of how well (or bad) the modeling performed, I
 calculated the **mean** error to investigate general trends, its
 standard-deviation (**SD**), and the mean absolute error for error
@@ -193,13 +193,13 @@ distributions, we can draw first (maybe obvious) conclusions:
 Interestingly, regardless of estimation procedure, the *σ* and *μ*
 parameters seem to be overestimated, whereas *τ* is underestimated.
 
-![](/images/unnamed-chunk-9-1.png)
+![]({{ site.baseurl }}/images/unnamed-chunk-9-1.png)
 
 ### Statistical Summary
 
 #### How strong are the observed biases?
 
-![](/images/tm0.png)
+![]({{ site.baseurl }}/images/tm0.png)
 As we have already seen in the figure, we confirm that *μ* is generally
 overestimated while, *τ* is underestimated. This makes sense given the
 distribution of the data: The majority of data will be sampled from the
@@ -213,7 +213,7 @@ leading to an overestimation of *σ*.
 
 #### What can we learn about the error?
 
-![](/images/tm123.png)
+![]({{ site.baseurl }}/images/tm123.png)
 
 All factors which were included in the model appear to have some meaning
 (are significant). As we have seen in the other analysis, the method of
@@ -262,7 +262,7 @@ distribution of p-values (as we would expect). The pairings (e.g., 20 :
 50) show on how many trials the parameters in condition 1 (20) and in
 condition 2 (50) were estimated. The paired t-tests were then calculated
 as condition 1 \> condition 2.
-![](/images/unnamed-chunk-14-1.png)
+![]({{ site.baseurl }}/images/unnamed-chunk-14-1.png)
 
 For completeness sake I also calculated the average t-value for each of
 the pairing, next to the proportion of false positive results.
