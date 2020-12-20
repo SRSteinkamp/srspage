@@ -1,0 +1,183 @@
+<h1 id="30th-place-solution-in-kaggle">30th place solution in Kaggle</h1>
+
+<p>This post is also available in the <a href="https://www.kaggle.com/c/trends-assessment-prediction/discussion/163744">Kaggle forums</a>.</p>
+
+<p>First of all thanks to the organizers to putting together this challenging and interesting competition!</p>
+
+<p>I’ve seen many good and well written and well developed solutions on the challenge … mine is neither. But I just wanted chip in, as I might have used some feature engineering that hasn’t been used as widely. Unfortunately I don’t have the time right now to dig into it in detail, but will just give you a rough description about what I did.</p>
+
+<h2 id="reflections">Reflections</h2>
+
+<p>A personal note on how I perceived the challenge. I was really exciting to see this challenge, this should lie in my area of expertise, so why not give it a try. So I did, wrote a for my terms successful EDA notebook, got into the data and somehow got to 13th place. But, as people noted, there was not much going on in terms of discussion etc., so I might have gotten a
+bit complacent with my position and did not develop much further. Also I might have gotten a bit annoyed, because I couldn’t get my errors on <code class="language-plaintext highlighter-rouge">domain1_var1</code> and the <code class="language-plaintext highlighter-rouge">domain2</code> vars done as much as I liked.</p>
+
+<p>Then life happened, vacation, deadlines, an online hackathon. Not much space for the challenge, and suddenly there are 10 days left, I have a deadline coming up, and find myself around place 50th on the leaderboard. So some panic sets in and also some craziness, so I rewrote the analysis, and preprocessing from scratch, run all the different models. Stack them up and well suddenly it’s place 34, and 30 on the private leaderboard - my best competition so far.</p>
+
+<h2 id="preprocessing-and-features">Preprocessing and Features</h2>
+
+<h3 id="targets">Targets</h3>
+
+<ol>
+  <li>I decided to perform stratified cross-validation on my data, so I used <code class="language-plaintext highlighter-rouge">KNN(n_clusters=15)</code> on
+the target variables, setting the missing values to 0, so that this will be taken
+into account for the stratification approach.</li>
+  <li>Then I imputed the missing data using <code class="language-plaintext highlighter-rouge">sklearn.impute.IterativeImputer</code> to get
+values there. This seemed to be a good balance for me between discarding the data
+or just filling in a constant. However, I didn’t really look into the imputations
+afterwards…</li>
+</ol>
+
+<h3 id="preprocessing-and-feature-engineering">Preprocessing and Feature Engineering</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">loading.csv</code> - Discarded <code class="language-plaintext highlighter-rouge">IC_20</code> - Seemed to be very different between train and test (discussions and kernels)</li>
+  <li><code class="language-plaintext highlighter-rouge">fnc.csv</code> - Reordering the data for use with <code class="language-plaintext highlighter-rouge">nilearn.connectome.vec_to_sym_matrix</code></li>
+  <li>Extracting data from the 4D feature maps. I have a kernel out-there showing how this can be done using different
+<code class="language-plaintext highlighter-rouge">Masker</code> objects using <code class="language-plaintext highlighter-rouge">nilearn.input_data</code>. I extracted the sets <code class="language-plaintext highlighter-rouge">schaeffer</code> (400 brain regions),
+<code class="language-plaintext highlighter-rouge">msdl</code>, and <code class="language-plaintext highlighter-rouge">basc</code> (197 regions) here.</li>
+  <li>Graph-based features: Several publications also focus on using graph-theory based descriptions of functional
+connectivity as features for machine learning classifiers. So I used the “Brain Connectivity Toolbox”, <code class="language-plaintext highlighter-rouge">bct.py</code>
+to derive features. These were just a ton of global and local descriptions, also at different thresholdings of the
+connectivity matrices (derived from <code class="language-plaintext highlighter-rouge">fnc</code>). Around 1700 features in total (with sometimes really bad numerical
+issues), which I somehow hacked away in the preprocessing before my stacking data. This will be named <code class="language-plaintext highlighter-rouge">fnc_graph</code>.</li>
+  <li>Combined data, I also created the set <code class="language-plaintext highlighter-rouge">loadfnc</code>, combining <code class="language-plaintext highlighter-rouge">fnc</code> and <code class="language-plaintext highlighter-rouge">loading</code> data, and <code class="language-plaintext highlighter-rouge">loadmsdl</code> combining
+<code class="language-plaintext highlighter-rouge">msdl</code> and <code class="language-plaintext highlighter-rouge">loading</code>. Finally, I also used a <code class="language-plaintext highlighter-rouge">loadnoise</code> set, where I added some random intercept and Gaussian noise
+to the <code class="language-plaintext highlighter-rouge">loading</code> data (differently for each subset). If that helped at all, I couldn’t unfortunately test.</li>
+</ul>
+
+<h2 id="stacking-stacking-stacking">Stacking, stacking, stacking</h2>
+
+<p>I stacked tons of models (32 for each feature) using different regression approaches, and
+sometimes different preprocessing. <code class="language-plaintext highlighter-rouge">ConnectivityMeasure</code> (shortened to <code class="language-plaintext highlighter-rouge">CM</code>).
+is a class from <code class="language-plaintext highlighter-rouge">nilearn.connectome</code>,
+that can be used to transform a <code class="language-plaintext highlighter-rouge">n x t</code> matrix in to a <code class="language-plaintext highlighter-rouge">n x n</code> connectivity matrix, using differnt
+kinds of connectivity. The nice thing is, it also fits into sklearn-pipelines as a vectorized version
+of the matrix is possible.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Set</th>
+      <th>Preprocessing SVR, LGBM</th>
+      <th>Preprocessing Regression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">basc</code></td>
+      <td>CM(tangent), PCA(whiten=True), RobustScaler()</td>
+      <td>CM(correlation), PCA(whiten=True)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">msdl</code></td>
+      <td>CM(tangent), PCA(whiten=True), RobustScaler()</td>
+      <td>CM(correlation), PCA(whiten=True)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">schaeffer</code></td>
+      <td>CM(tangent), PCA(whiten=True), RobustScaler()</td>
+      <td>CM(correlation), PCA(whiten=True)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fnc</code></td>
+      <td>PCA(whiten=True)</td>
+      <td>abs(fnc) &lt; 0.15 = 0,  PCA(whiten=True)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fnc_pca</code></td>
+      <td>None</td>
+      <td>abs(fnc) &lt; 0.15 = 0,  None</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loading</code></td>
+      <td>RobustScaler()</td>
+      <td>RobustScaler()</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fnc_graph</code></td>
+      <td>Numerical fixes, PCA(whiten=True), RobustScaler()</td>
+      <td>Numerical fixes, PCA(whiten=True), RobustScaler()</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loadmsdl</code></td>
+      <td>PCA(whiten=True), RobustScaler()</td>
+      <td>PCA(whiten=True), RobustScaler()</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loadfnc</code></td>
+      <td>RobustScaler()</td>
+      <td>RoubstScaler()</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loadnoise</code></td>
+      <td>RobustScaler()</td>
+      <td>RobustScaler()</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="svr">SVR</h3>
+
+<p>I used sklearns <code class="language-plaintext highlighter-rouge">SVR</code> using both a linear and a rbf kernel on the datasets <code class="language-plaintext highlighter-rouge">basc</code>, <code class="language-plaintext highlighter-rouge">msdl</code>, <code class="language-plaintext highlighter-rouge">schaeffer</code>, <code class="language-plaintext highlighter-rouge">fnc_pca</code>, <code class="language-plaintext highlighter-rouge">loading</code>, and <code class="language-plaintext highlighter-rouge">fnc_graph</code>. To figure out the best parameters I applied <code class="language-plaintext highlighter-rouge">skopt.BayesianSearchCV</code> with 35 iterations (objective mean absolute error). Parameters optimized where <code class="language-plaintext highlighter-rouge">C</code>, <code class="language-plaintext highlighter-rouge">epsilon</code> and <code class="language-plaintext highlighter-rouge">n_components</code> for PCAs.</p>
+
+<p>So here are 2 x 6 = 12 models.</p>
+
+<h3 id="regression">Regression</h3>
+
+<p>In this competition I somehow came to like the <code class="language-plaintext highlighter-rouge">LassoLars</code> regression of sklearn. So that’s what I am using here. The feature selection of it seemed to help actually.
+Running models on <code class="language-plaintext highlighter-rouge">basc</code>, <code class="language-plaintext highlighter-rouge">msdl</code>, <code class="language-plaintext highlighter-rouge">schaeffer</code>, <code class="language-plaintext highlighter-rouge">fnc</code>, <code class="language-plaintext highlighter-rouge">loading</code>, <code class="language-plaintext highlighter-rouge">fnc_graph</code>, <code class="language-plaintext highlighter-rouge">loadmsdl</code>, <code class="language-plaintext highlighter-rouge">loadfnc</code>, and <code class="language-plaintext highlighter-rouge">loadnoise</code>. This time optimizing mean squared error using <code class="language-plaintext highlighter-rouge">BayesianSearchCV</code> for <code class="language-plaintext highlighter-rouge">alpha</code> and <code class="language-plaintext highlighter-rouge">n_components</code>.</p>
+
+<p>So 9 models.</p>
+
+<h3 id="lightgbm">LightGBM</h3>
+
+<p>Same datasets as for <code class="language-plaintext highlighter-rouge">Regression</code>. Optimizing tree parameters and PCA, best model defined by mean absolute error.</p>
+
+<p>Another 9 models.</p>
+
+<h3 id="2d-cnn">2D CNN</h3>
+
+<p>I also tried to get some more spatial information into the model as well
+so I set up a small 2D CNN having:</p>
+
+<ul>
+  <li>Conv2D Layer, with ReLU activation</li>
+  <li>Maxpooling (2, 2)</li>
+  <li>Flatten</li>
+  <li>Dropout()</li>
+  <li>Dense(1)</li>
+</ul>
+
+<p>Where the number of <code class="language-plaintext highlighter-rouge">filters</code>, <code class="language-plaintext highlighter-rouge">kernel_size</code>, <code class="language-plaintext highlighter-rouge">Dropout</code>, <code class="language-plaintext highlighter-rouge">learning_rate</code>, and the <code class="language-plaintext highlighter-rouge">loss</code> (mae, mse), where found through <code class="language-plaintext highlighter-rouge">BayesianSearchCV</code>.</p>
+
+<h2 id="training-and-prediction">Training and Prediction</h2>
+
+<p>I used the same approach for all models and the final stacking model:</p>
+
+<ol>
+  <li>Optimize hyperparameters on 5-Folds.</li>
+  <li>Retrain model on CV-Data</li>
+  <li>Evaluate on hold-out set</li>
+  <li>Retrain on all data</li>
+  <li>Predict on test set.</li>
+</ol>
+
+<p>The final stacking model was again a <code class="language-plaintext highlighter-rouge">LassoLars</code> regression, on the outputs of the 31 models. I actually preprocessed the predictions, by slapping a <code class="language-plaintext highlighter-rouge">RobustScaler</code> in just for good measure.</p>
+
+<h2 id="thoughts">Thoughts</h2>
+
+<p>I learned quite a lot from the competition, but have to say that I am not really satisfied with what I did (my best competition so far…), and see a lot of room for improvement.</p>
+
+<h3 id="work-smarter">Work smarter</h3>
+
+<p>I think the most annoying part for me is, that I just stacked tons of models. In the end not even thinking much about <em>why</em> I am doing it. I just wanted to get that 0.001 Leaderboard boost, to get a little edge. But, if I had invested my time more into careful tuning, preprocessing, and careful model selection, I think I would have gotten more out in the last weekend of the competition, than I did here. In the end, I was mostly waiting for models to finish running and to start the next set of long calculations.</p>
+
+<h3 id="evaluate-evaluate-evaluate">Evaluate, evaluate, evaluate</h3>
+
+<p>So far, my intuition on evaluating locally and avoiding overfitting got me quite far (I got my first silver medal basically because of an incredibly heavy shake up of the leaderboard, pushing me a couple of 100 places or so to the top). Here I think I was actually quite lucky - see the forum posts where people discuss about the lack of a shake up.</p>
+
+<h3 id="get-a-team">Get a team</h3>
+
+<p>Next time I am in this situation, I think I will team up. Also I apologize to the people who contacted me and I didn’t get back to. Here it was mostly bad timing, but I think there is some much to gain in terms of insights, when you can discuss your solutions :)</p>
+
+<p>And of course much more.</p>
