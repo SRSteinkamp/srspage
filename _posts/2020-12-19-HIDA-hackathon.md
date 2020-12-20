@@ -3,7 +3,7 @@ title: "HIDA-Datathon"
 author: Simon R. Steinkamp
 date: 2020-12-19
 
-tags:
+categories:
     - HIDA
 ---
 

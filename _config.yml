@@ -39,11 +39,11 @@ baseurl: "/srspage" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: fastdotai
     github: SRSteinkamp
 
+#    twitter: fastdotai
 # Set this to true to get LaTeX math equation support
-use_math:
+use_math: true
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: true
@@ -100,7 +100,8 @@ plugins:
 paginate: 15
 paginate_path: /page:num/
 
-remote_theme: jekyll/minima
+#remote_theme: jekyll/minima
+remote_theme: mmistakes/minimal-mistakes
 
 titles_from_headings:
   enabled:     true

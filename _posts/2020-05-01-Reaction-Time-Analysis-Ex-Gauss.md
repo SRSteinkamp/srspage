@@ -3,7 +3,7 @@ title: "Reaction Time Analysis: The exponential Gaussian"
 author: Simon R. Steinkamp
 date: 2020-04-30
 
-tags:
+categories:
     - Reaction Times
     - Modeling
     - R

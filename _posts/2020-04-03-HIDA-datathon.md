@@ -2,7 +2,7 @@
 title: "HIDA-Datathon in April"
 author: Simon R. Steinkamp
 date: 2020-04-30
-tags:
+categorie:
   - Python
   - HIDA
 ---
