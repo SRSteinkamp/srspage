@@ -3,7 +3,7 @@ title: "30th place solution in Kaggle"
 author: Simon R. Steinkamp
 date: 2020-07-03
 
-tags:
+categories:
     - Python
     - Kaggle
 ---
