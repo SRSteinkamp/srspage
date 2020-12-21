@@ -20,7 +20,7 @@ All code can be found in rmarkdown documents on Github
 
 Analyzing reaction times has a long history in psychology and
 (cognitive) neuroscience. Most people who studied Psychology in
-university have conducted a classical psychological experiments. For
+university have conducted classical psychological experiments. For
 example investigating the [Stroop
 task](https://en.wikipedia.org/wiki/Stroop_effect). You might have
 encountered the stimuli, with the typical task to spell out loud as fast
@@ -35,14 +35,14 @@ After running such a task, with many more word-color pairs and different
 participants, a typical question in undergrad might be: Are participants
 significantly faster while reading matching color words
 ($\\color{green}{\\text{GREEN}}$) than reading non-matching color words
-($\\color{blue}{\\text{GREEN}}$)? A straightforward answer would be to
+($\\color{blue}{\\text{GREEN}}$)? A straightforward answer would be
 to average the reaction times in the non-matching and matching
 conditions for each participant and then compare the two conditions
 using for example a [paired
 t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#Paired_samples).
 Yes, if *p* \< 0.05 and no, if *p* \> 0.05.
 
-Results are in and everything is fine? If you start wondering, whether
+Results are in and everything is fine? If you start wondering whether
 this is the *correct* way of analysis, you might find more and more and
 **is more**. Different discussions about:
 
@@ -129,7 +129,7 @@ rare-condition, like an oddball), up to 500 trials (a Psychophysicist’s
 dream (Palmer et al. 2011)). For each of the twelve distributions I
 sampled different numbers of trials (10, 20, 35, 50, 100, 200, 350, 500)
 and then estimated the three parameters *μ*, *σ*, *τ* using the method
-of moments and MLE. This processes was repeated 10000 times.
+of moments and MLE. This process was repeated 10000 times.
 
 |  Distribution|   Mu|  Sigma|  Tau|
 |-------------:|----:|------:|----:|
@@ -239,17 +239,17 @@ estimation of *σ*. So further analyzing *σ*, for example in a group
 analysis, should be done very carefully. Last but not least, sample
 sizes should be equal when comparing *μ* and *τ* across different
 conditions! Even if parameters are drawn from the same Ex-Gauss
-distribution, it is very likely that the condition with less trials will
+distribution, it is very likely that the condition with fewer trials will
 have a higher estimate of these parameters. We can do a small simulation
 of this using our simulated data.
 
 ### Type 1 error due to imbalanced sample sizes
 
-For simplicity I decided to only use samples from distribution 6 (with
+For simplicity, I decided to only use samples from distribution 6 (with
 *μ* = 400, *τ* = 200, and *σ* = 50), estimated by MLE. I am drawing 30
 random sets of estimated parameters for different combinations of sample
 sizes. The number 30 is quite arbitrary but is supposed to reflect a
-typical number of participants in an reaction time experiment. The
+typical number of participants in a reaction time experiment. The
 parameters of the different distributions are then submitted to a paired
 two-sided t-test and the number of significant results (*p* \< 0.05) are
 reported. In theory, as data is drawn from the same distribution, we
@@ -264,7 +264,7 @@ condition 2 (50) were estimated. The paired t-tests were then calculated
 as condition 1 \> condition 2.
 ![]({{ site.baseurl }}/images/unnamed-chunk-14-1.png)
 
-For completeness sake I also calculated the average t-value for each of
+For completeness' sake, I also calculated the average t-value for each of
 the pairing, next to the proportion of false positive results.
 
 | Pairing       |  Mu\_p|   Mu\_t|  Tau\_p|  Tau\_t|
@@ -276,7 +276,7 @@ the pairing, next to the proportion of false positive results.
 | 5 - 100 : 200 |  0.049|   0.142|   0.056|  -0.092|
 | 6 - 200 : 200 |  0.050|  -0.009|   0.051|   0.005|
 
-As assumed, we have a inflation of false-positive t-tests when comparing
+As assumed, we have an inflation of false-positive t-tests when comparing
 estimates of Ex-Gauss parameters from the same distribution (but
 estimated using different sample-sizes). The larger the imbalance, the
 larger the false positive rate!
