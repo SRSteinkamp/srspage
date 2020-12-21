@@ -84,6 +84,17 @@
   
 
   
+      ,"page4": {
+          "title": "Reading List",
+          "content": "A reading list to come (for example books, blogposts etc.), that I found useful. Might be externalized in the future. .",
+          "url": "https://srsteinkamp.github.io/srspage/reading/",
+          "relUrl": "/reading/",
+          "date": ""
+      }
+      
+  
+
+  
   
 
   
@@ -97,7 +108,7 @@
   
 
   
-      ,"page9": {
+      ,"page10": {
           "title": "",
           "content": "{“/_pages/about.html”:”https://srsteinkamp.github.io/about/”,”/_pages/back.html”:”https://srsteinkamp.github.io/”} .",
           "url": "https://srsteinkamp.github.io/srspage/redirects.json",
@@ -111,7 +122,7 @@
   
 
   
-      ,"page11": {
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://srsteinkamp.github.io/srspage/robots.txt",
