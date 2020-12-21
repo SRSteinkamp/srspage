@@ -8,11 +8,11 @@ toc: true
 categories: [Reaction Times, Modeling, R]
 ---
 
-## The (not so) easy task of analysing reaction times.
+## The (not so) easy task of analyzing reaction times.
 
 **This is the non-interactive Version of the analysis!**
 You can find the interactive notebook
-[here](/files/Reaction-Time-Ex-Gauss-I.html), **caution** it’s about 7MB
+[here]({{site.baseurl}}/images/Reaction-Time-Ex-Gauss-I.html), **caution** it’s about 7MB
 in size, so not your average website!
 
 All code can be found in rmarkdown documents on Github
@@ -179,7 +179,7 @@ There is unfortunately, too much data to have good look at, so here is a
 `datatable` to play around with and investigate some of the summary
 values (in the interactive version only). Data can be created using the
 `.Rmd` files in the
-[Repro](https://github.com/SRSteinkamp/ReactionTimeWrangling/exgauss/)
+[Repro](https://github.com/SRSteinkamp/ReactionTimeWrangling/tree/master/exgauss)
 
 ## Analysis
 

@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: SRSteinkamp Blog
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+description: Blog and Portfolio by SRSteinkamp.
 github_username: SRSteinkamp
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "srspage"
