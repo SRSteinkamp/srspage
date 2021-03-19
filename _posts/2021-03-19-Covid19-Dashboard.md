@@ -39,6 +39,6 @@ I here decided to store the data as an invisible `json` in the page itself, whic
 
 This ways the updates to the plot using the radio-buttons does not need to download new data and can do the computations, without constantly querying the database.
 
-![Overview of the dashboard]({{site.baseurl}}/images/covid19_dash.png)
+![Dashboard overview.]({{ site.baseurl }}/images/covid_dash.png)
 
 To see the dashboards source code please visit: [https://github.com/SRSteinkamp/DK_Covid19_Dash](https://github.com/SRSteinkamp/DK_Covid19_Dash)
