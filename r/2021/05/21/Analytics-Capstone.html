@@ -4,20 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>A Covid-19 Dashboard (for Denmark) using Dash and Plotly | SRSteinkamp Blog</title>
+<title>Data Analytics Capstone | SRSteinkamp Blog</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="A Covid-19 Dashboard (for Denmark) using Dash and Plotly" />
+<meta property="og:title" content="Data Analytics Capstone" />
 <meta name="author" content="Simon R. Steinkamp" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="TL;DR I created a small dashboard for COVID-19 cases in Denmark, deployed on heroku." />
-<meta property="og:description" content="TL;DR I created a small dashboard for COVID-19 cases in Denmark, deployed on heroku." />
-<link rel="canonical" href="https://srsteinkamp.github.io/srspage/python/plotly/dash/2020/12/19/Covid19-Dashboard.html" />
-<meta property="og:url" content="https://srsteinkamp.github.io/srspage/python/plotly/dash/2020/12/19/Covid19-Dashboard.html" />
+<meta name="description" content="Somewhere between defending my doctorate and looking for a job, I found myself doing the Google Analytics Capstone on Coursera which provided nice insights into data analytics and the thinking behind it. But unfortunately for me the technical level was very basic (beginner friendly) so that I did not learn many things I had hoped for." />
+<meta property="og:description" content="Somewhere between defending my doctorate and looking for a job, I found myself doing the Google Analytics Capstone on Coursera which provided nice insights into data analytics and the thinking behind it. But unfortunately for me the technical level was very basic (beginner friendly) so that I did not learn many things I had hoped for." />
+<link rel="canonical" href="https://srsteinkamp.github.io/srspage/r/2021/05/21/Analytics-Capstone.html" />
+<meta property="og:url" content="https://srsteinkamp.github.io/srspage/r/2021/05/21/Analytics-Capstone.html" />
 <meta property="og:site_name" content="SRSteinkamp Blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-12-19T00:00:00-06:00" />
+<meta property="article:published_time" content="2021-05-21T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"A Covid-19 Dashboard (for Denmark) using Dash and Plotly","url":"https://srsteinkamp.github.io/srspage/python/plotly/dash/2020/12/19/Covid19-Dashboard.html","dateModified":"2020-12-19T00:00:00-06:00","datePublished":"2020-12-19T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://srsteinkamp.github.io/srspage/python/plotly/dash/2020/12/19/Covid19-Dashboard.html"},"author":{"@type":"Person","name":"Simon R. Steinkamp"},"description":"TL;DR I created a small dashboard for COVID-19 cases in Denmark, deployed on heroku.","@context":"https://schema.org"}</script>
+{"headline":"Data Analytics Capstone","url":"https://srsteinkamp.github.io/srspage/r/2021/05/21/Analytics-Capstone.html","dateModified":"2021-05-21T00:00:00-05:00","datePublished":"2021-05-21T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://srsteinkamp.github.io/srspage/r/2021/05/21/Analytics-Capstone.html"},"author":{"@type":"Person","name":"Simon R. Steinkamp"},"description":"Somewhere between defending my doctorate and looking for a job, I found myself doing the Google Analytics Capstone on Coursera which provided nice insights into data analytics and the thinking behind it. But unfortunately for me the technical level was very basic (beginner friendly) so that I did not learn many things I had hoped for.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/srspage/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://srsteinkamp.github.io/srspage/feed.xml" title="SRSteinkamp Blog" /><link rel="shortcut icon" type="image/x-icon" href="/srspage/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -88,8 +88,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">A Covid-19 Dashboard (for Denmark) using Dash and Plotly</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-19T00:00:00-06:00" itemprop="datePublished">
-        Dec 19, 2020
+    <h1 class="post-title p-name" itemprop="name headline">Data Analytics Capstone</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-05-21T00:00:00-05:00" itemprop="datePublished">
+        May 21, 2021
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">Simon R. Steinkamp</span></span>
@@ -103,13 +103,7 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/srspage/categories/#Python">Python</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/srspage/categories/#Plotly">Plotly</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/srspage/categories/#Dash">Dash</a>
+        <a class="category-tags-link" href="/srspage/categories/#R">R</a>
         
       
       </p>
@@ -118,43 +112,16 @@ window.onload = wrap_img;
     </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <h2 id="tldr">TL;DR</h2>
-<p>I created a small dashboard for COVID-19 cases in Denmark, deployed on
-<a href="https://dashboard.heroku.com/">heroku</a>.</p>
+    <p>Somewhere between defending my doctorate and looking for a job, I found myself doing the
+Google Analytics Capstone on Coursera which provided nice insights into data analytics and the thinking behind it. But unfortunately for me the technical level was very basic (beginner friendly) so that I did not learn many things I had hoped for.</p>
 
-<p>Which you can see <a href="https://dk-covid19-dash.herokuapp.com/"><strong>here</strong></a></p>
+<p>Anyways, here is the URL to the capstone project, where I selected the provided idea of creating a report for bike-sharing data.</p>
 
-<h2 id="background">Background</h2>
-<p>To motivate myself to learn a few new skills which might come handy in future
-jobs, I got a few courses on udemy as a general guidance and more structured
-approach to get into new topics.</p>
+<p><a href="/srspage/images/cert_capstone.html">Report</a></p>
 
-<p>One of the courses was on designing interactive dashboards in Pythons using
-<code class="language-plaintext highlighter-rouge">plotly</code> and <code class="language-plaintext highlighter-rouge">dash</code>. As a code-along capstone they showed how to develop a dashboard for the stock-market.
-Now, I could not easily get the data I wanted through <code class="language-plaintext highlighter-rouge">pandas-datareader</code>, as many of the APIs now require a registration or are paid.</p>
+<p>The whole repro can be found <a href="https://github.com/SRSteinkamp/rideshare_analystcert">here</a>.</p>
 
-<h2 id="the-data">The Data</h2>
-
-<p>As I was anyways up for a bit more of a challenge and recently moved to Denmark and was digging regularly digging through COVID-19 Dashboards (like the one at <a href="https://www.zeit.de/wissen/gesundheit/corona-zahlen-deutschland-neuinfektionen-inzidenz-aktuelle-karte">zeit.de</a>), I gave myself a try.</p>
-
-<p>Fortunately, Denmark provides regularly updated data on COVID-19 (and many many other topics) at <a href="statbank.dk">statbank.dk</a> all accessible via a POST API.</p>
-
-<p>While the data was easy accessible and could be directly read into pandas as a <code class="language-plaintext highlighter-rouge">.csv</code>, it actually had internally some interesting challenges. For example, querying dates that were not present in the database led to errors, so that I had to retrieve meta-data about the database before creating queries, so that I could filter data beforehand.</p>
-
-<h2 id="the-dashboard">The Dashboard</h2>
-
-<p>The Dashboard itself is a basic line-plot (or a collection of line-plots).
-To keep the traffic as low as possible, I decided, to leave the <code class="language-plaintext highlighter-rouge">update</code> button from the code-along capstone next to the date-range picker and the selection of communes in Denmark. In fact, clicking update requests the data and downloads it into the <code class="language-plaintext highlighter-rouge">html</code> file.</p>
-
-<p>I here decided to store the data as an invisible <code class="language-plaintext highlighter-rouge">json</code> in the page itself, which was provided as a possible solution in the <a href="https://dash.plotly.com/sharing-data-between-callbacks">dash-documentation</a>.</p>
-
-<p>This ways the updates to the plot using the radio-buttons does not need to download new data and can do the computations, without constantly querying the database.</p>
-
-<p><img src="/srspage/images/covid_dash.png" alt="Dashboard overview." /></p>
-
-<p>To see the dashboards source code please visit: <a href="https://github.com/SRSteinkamp/DK_Covid19_Dash">https://github.com/SRSteinkamp/DK_Covid19_Dash</a></p>
-
-  </div><a class="u-url" href="/srspage/python/plotly/dash/2020/12/19/Covid19-Dashboard.html" hidden></a>
+  </div><a class="u-url" href="/srspage/r/2021/05/21/Analytics-Capstone.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
