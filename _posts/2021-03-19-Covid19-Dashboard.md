@@ -2,7 +2,7 @@
 layout: post
 title: "A Covid-19 Dashboard (for Denmark) using Dash and Plotly"
 author: Simon R. Steinkamp
-date: 2020-12-19
+date: 2021-03-19
 categories: [Python, Plotly, Dash]
 ---
 
